@@ -1,0 +1,16 @@
+name: Keep BTP App Awake
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  keep-awake:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping BTP App to keep awake
+        run: |
+          echo "Pinging BTP app at $(date)"
+          curl -I --max-time 10 https://sap-pe-poc.cfapps.us10-001.hana.ondemand.com/
